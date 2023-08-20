@@ -2,6 +2,7 @@ import React from 'react';
 import {Cars, topCars} from "./Cars";
 import {Button} from "../components/Button";
 import {UseState} from "../components/UseState";
+import {Filter} from "../components/Filter";
 
 type BodyPropsType = {
     titleForBody: string
@@ -36,6 +37,10 @@ export const Body = (props: BodyPropsType) => {
             </div>
 
             <UseState/>
+
+            <div>
+                <Filter/>
+            </div>
         </main>
     );
 };
