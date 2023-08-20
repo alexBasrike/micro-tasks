@@ -29,7 +29,7 @@ export const Cars = (props: TopCarsPropsType) => {
                 <tbody>
                 {props.topCars.map((el, index) => {
                     return (
-                        <tr>
+                        <tr key={index}>
                             <td>{index}</td>
                             <td>{el.manufacturer}</td>
                             <td>{el.model}</td>
