@@ -1,8 +1,6 @@
-import React from 'react';
-import {Cars, topCars} from "./Cars";
+import React, {useState} from 'react';
 import {Button} from "../components/Button";
-import {UseState} from "../components/UseState";
-import {Filter} from "../components/Filter";
+import {Input} from "../components/Input";
 
 type BodyPropsType = {
     titleForBody: string
@@ -10,37 +8,33 @@ type BodyPropsType = {
 
 export const Body = (props: BodyPropsType) => {
 
-    /*--- Button ---*/
-    const Button1Foo = (subscriber: string, age: number, address: string) => {
-        console.log(subscriber, age, address);
+    let [message, setMessage] = useState([
+        {message: 'message1'},
+        {message: 'message2'},
+        {message: 'message3'}
+    ]);
+
+    let [title, setTitle] = useState("");
+
+    const addMessage = (title: string) => {
+        setMessage([{message: title}, ...message]);
     }
 
-    const Button2Foo = (subscriber: string) => {
-        console.log(subscriber);
+    const callBackButtonHandler = () => {
+        addMessage(title)
+        setTitle('');
     }
-
-    const Button3Foo = () => {
-        console.log("I'm stupid button");
-    }
-    /*--- Button ---*/
 
     return (
-
         <main>
-            {props.titleForBody}
-            <Cars topCars={topCars}/>
+            <Input addMessage={addMessage} title={title} setTitle={setTitle}/>
+            <Button name={"+"} callBack={callBackButtonHandler}/>
 
-            <div>
-                <Button name={"MyYouTubeChanel-1"} callBack={() => Button1Foo("I'm Vasya", 21, "live in Minsk")}/>
-                <Button name={"MyYouTubeChanel-2"} callBack={() => Button2Foo("I'm Ivan")}/>
-                <Button name={"Stupid BUTTON"} callBack={Button3Foo}/>
-            </div>
-
-            <UseState/>
-
-            <div>
-                <Filter/>
-            </div>
+            {message.map((el, index) => {
+                return (
+                    <div key={index}>{el.message}</div>
+                )
+            })}
         </main>
     );
 };
