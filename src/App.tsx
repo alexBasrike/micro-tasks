@@ -5,7 +5,7 @@ import {Body} from "./site/Body";
 function App() {
     return (
         <div className="App">
-            <Body titleForBody={"TodoList"}/>
+            <Body titleForBody={"Input"}/>
         </div>
     );
 }
